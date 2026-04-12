@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethereal Whisper | Gestión de Usuarios</title>
+<link rel="stylesheet" href="css/tableroadmin.css">
+</head>
+<body>
+  <main class="admin-page">
+    <section class="hero-panel admin-hero">
+      <p class="hero-kicker">Panel administrativo</p>
+      <h1>Gestión de usuarios</h1>
+      <p class="hero-copy">Crea y administra cuentas de Tejedores, Transportistas y Administradores desde un solo lugar.</p>
+    </section>
+
+    <section class="admin-form-section">
+      <div class="admin-card">
+        <h2>Crear nuevo usuario</h2>
+        <form id="userForm" class="admin-form">
+          <div class="input-group">
+            <input type="text" id="newUsername" name="username" required>
+            <label for="newUsername">Usuario</label>
+          </div>
+          <div class="input-group">
+            <input type="password" id="newPassword" name="password" required>
+            <label for="newPassword">Contraseña</label>
+          </div>
+          <div class="input-group">
+            <select id="newRole" name="role" required>
+              <option value="" disabled selected hidden>Selecciona rol</option>
+              <option value="tejedor">Tejedor</option>
+              <option value="transportista">Transportista</option>
+              <option value="admin">Admin</option>
+            </select>
+            <label for="newRole">Rol</label>
+          </div>
+          <button type="submit">Crear usuario</button>
+        </form>
+        <p id="userStatus" class="admin-status"></p>
+      </div>
+    </section>
+
+    <section class="admin-list-section">
+      <div class="admin-card">
+        <h2>Usuarios existentes</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Rol</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/shared-layout-admin.js"></script>
+  <script src="js/admin-data.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/usuariosadmin.js"></script>
+</body>
+</html>
