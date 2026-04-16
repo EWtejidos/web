@@ -44,7 +44,7 @@
 .filter-group select {
   padding: 0.75rem 1rem;
   border-radius: 12px;
-  border: 1px solid rgba(20, 76, 54, 0.16);
+  border: 1px solid rgba(33, 40, 53, 0.16);
   font: inherit;
   background: white;
   color: var(--text-main);
@@ -84,8 +84,8 @@
 }
 
 .productos-table thead {
-  background: rgba(20, 76, 54, 0.06);
-  border-bottom: 2px solid rgba(20, 76, 54, 0.16);
+  background: rgba(33, 40, 53, 0.06);
+  border-bottom: 2px solid rgba(33, 40, 53, 0.16);
 }
 
 .productos-table th {
@@ -100,12 +100,12 @@
 
 .productos-table td {
   padding: 1rem;
-  border-bottom: 1px solid rgba(20, 76, 54, 0.08);
+  border-bottom: 1px solid rgba(33, 40, 53, 0.08);
   color: var(--text-main);
 }
 
 .productos-table tbody tr:hover {
-  background: rgba(20, 76, 54, 0.04);
+  background: rgba(33, 40, 53, 0.04);
 }
 
 /* Estilos específicos para columnas */
@@ -128,7 +128,7 @@
   height: 60px;
   overflow: hidden;
   border-radius: 12px;
-  background: rgba(112, 168, 139, 0.25);
+  background: rgba(191, 162, 135, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,7 +162,7 @@
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 700;
-  background: rgba(20, 76, 54, 0.1);
+  background: rgba(33, 40, 53, 0.1);
   color: var(--brand-dark);
   text-transform: capitalize;
 }
@@ -191,7 +191,7 @@
 
 .button.danger {
   color: white;
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  background: linear-gradient(135deg, #bfa288, #bba287);
   box-shadow: 0 14px 30px rgba(231, 76, 60, 0.22);
 }
 
@@ -206,7 +206,7 @@
   display: grid;
   place-items: center;
   padding: 1.5rem;
-  background: rgba(6, 15, 11, 0.76);
+  background: rgba(33, 40, 53, 0.76);
   backdrop-filter: blur(4px);
   animation: fadeIn 180ms ease;
 }
@@ -228,7 +228,7 @@
   border-radius: 24px;
   padding: 2rem;
   background: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(20, 76, 54, 0.16);
+  border: 1px solid rgba(33, 40, 53, 0.16);
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.24);
   animation: slideUp 200ms ease;
 }
@@ -267,7 +267,7 @@
 .modal-header {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 2px solid rgba(20, 76, 54, 0.16);
+  border-bottom: 2px solid rgba(33, 40, 53, 0.16);
 }
 
 .modal-header h2 {
@@ -311,7 +311,7 @@
   display: grid;
   gap: 0.35rem;
   padding: 1rem;
-  background: rgba(20, 76, 54, 0.04);
+  background: rgba(33, 40, 53, 0.04);
   border-radius: 12px;
 }
 
@@ -344,7 +344,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 18px;
   overflow: hidden;
-  background: rgba(112, 168, 139, 0.25);
+  background: rgba(191, 162, 135, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -368,7 +368,7 @@
   height: 2.5rem;
   border: none;
   border-radius: 50%;
-  background: rgba(20, 76, 54, 0.1);
+  background: rgba(33, 40, 53, 0.1);
   color: var(--brand-dark);
   font-size: 1.2rem;
   cursor: pointer;
@@ -376,7 +376,7 @@
 }
 
 .gallery-nav button:hover {
-  background: rgba(20, 76, 54, 0.2);
+  background: rgba(33, 40, 53, 0.2);
   transform: scale(1.1);
 }
 
@@ -411,7 +411,7 @@
 .form-group textarea {
   padding: 0.9rem 1rem;
   border-radius: 12px;
-  border: 1px solid rgba(20, 76, 54, 0.16);
+  border: 1px solid rgba(33, 40, 53, 0.16);
   font: inherit;
   background: white;
   color: var(--text-main);
@@ -435,7 +435,7 @@
   justify-content: flex-end;
   margin-top: 1rem;
   padding-top: 1.5rem;
-  border-top: 2px solid rgba(20, 76, 54, 0.16);
+  border-top: 2px solid rgba(33, 40, 53, 0.16);
 }
 
 .form-actions .button {
@@ -496,7 +496,7 @@
   justify-content: center;
   border: none;
   border-radius: 8px;
-  background: rgba(20, 76, 54, 0.1);
+  background: rgba(33, 40, 53, 0.1);
   color: var(--text-main);
   font-weight: 700;
   cursor: pointer;
@@ -504,7 +504,7 @@
 }
 
 .pagination button:hover:not(:disabled) {
-  background: rgba(20, 76, 54, 0.2);
+  background: rgba(33, 40, 53, 0.2);
 }
 
 .pagination button:disabled {

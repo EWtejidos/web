@@ -161,33 +161,43 @@ function mapOrderForView(order) {
 }
 
 function mapWorkflowStatus(status) {
-  if (status === "cotizacion") {
+  if (["cotizacion", "pendiente_pago", "cotizacion_pendiente"].includes(status)) {
     return {
       fase1: true,
       fase2: false,
       fase3: false,
       fase4: false,
-      statusLabel: "pendiente"
+      statusLabel: "pendiente de pago"
     };
   }
 
-  if (status === "comprado") {
+  if (status === "pagado") {
     return {
-      fase1: true,
+      fase1: false,
       fase2: false,
+      fase3: true,
+      fase4: false,
+      statusLabel: "pagado"
+    };
+  }
+
+  if (status === "en_produccion") {
+    return {
+      fase1: false,
+      fase2: true,
       fase3: false,
       fase4: false,
-      statusLabel: "aprobado"
+      statusLabel: "en producción"
     };
   }
 
-  if (status === "anticipo_pendiente") {
+  if (["listo_envio", "en_camino", "entregado"].includes(status)) {
     return {
       fase1: false,
       fase2: false,
       fase3: false,
-      fase4: false,
-      statusLabel: "anticipo-pendiente"
+      fase4: true,
+      statusLabel: "listo para transporte"
     };
   }
 
@@ -201,32 +211,12 @@ function mapWorkflowStatus(status) {
     };
   }
 
-  if (["pago_final", "pago-final", "pago final"].includes(status)) {
-    return {
-      fase1: false,
-      fase2: false,
-      fase3: true,
-      fase4: false,
-      statusLabel: "pendiente"
-    };
-  }
-
-  if (["terminado", "completado", "entregado"].includes(status)) {
-    return {
-      fase1: false,
-      fase2: false,
-      fase3: false,
-      fase4: true,
-      statusLabel: "listo para transporte"
-    };
-  }
-
   return {
     fase1: true,
     fase2: false,
     fase3: false,
     fase4: false,
-    statusLabel: "pendiente"
+    statusLabel: status || "pendiente"
   };
 }
 

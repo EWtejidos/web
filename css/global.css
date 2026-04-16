@@ -1,14 +1,14 @@
 :root {
-  --brand-dark: #144c36;
-  --brand: #1f7a53;
-  --brand-soft: #70a88b;
-  --mint: #d7efe1;
+  --brand-dark: #212835;
+  --brand: #5a7d5a;
+  --brand-soft: #bfa288;
+  --mint: #f8efda;
   --surface: rgba(255, 255, 255, 0.52);
   --surface-strong: rgba(255, 255, 255, 0.72);
   --border-soft: rgba(255, 255, 255, 0.35);
-  --text-strong: #123223;
-  --text-main: #214535;
-  --text-muted: #597567;
+  --text-strong: #212835;
+  --text-main: #212835;
+  --text-muted: #747274;
   --shadow-soft: 0 18px 40px rgba(9, 37, 24, 0.14);
 }
 
@@ -26,7 +26,7 @@ body {
   font-family: "Segoe UI", "Trebuchet MS", sans-serif;
   color: var(--text-main);
   background:
-    linear-gradient(135deg, rgba(8, 27, 20, 0.82), rgba(17, 79, 55, 0.52)),
+    linear-gradient(135deg, rgba(33, 40, 53, 0.92), rgba(33, 40, 53, 0.82)),
     url("../images/Branding/background.jpg") center / cover fixed;
 }
 
@@ -35,8 +35,8 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at top left, rgba(215, 239, 225, 0.28), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(31, 122, 83, 0.24), transparent 28%);
+    radial-gradient(circle at top left, rgba(248, 239, 218, 0.28), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(90, 125, 90, 0.24), transparent 28%);
   pointer-events: none;
 }
 
@@ -68,11 +68,11 @@ textarea {
   min-height: calc(100vh - 3rem);
   padding: 1.5rem;
   border-radius: 32px;
-  background: linear-gradient(180deg, rgba(9, 31, 22, 0.78), rgba(20, 76, 54, 0.78));
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(33, 40, 53, 0.92), rgba(33, 40, 53, 0.82));
+  border: 1px solid rgba(248, 239, 218, 0.12);
   backdrop-filter: blur(18px);
-  box-shadow: 0 24px 50px rgba(5, 17, 12, 0.32);
-  color: white;
+  box-shadow: 0 24px 50px rgba(33, 40, 53, 0.24);
+  color: #f8efda;
 }
 
 .sidebar-shell {
@@ -135,7 +135,7 @@ textarea {
 }
 
 .sidebar-link.active {
-  background: linear-gradient(135deg, rgba(112, 168, 139, 0.42), rgba(255, 255, 255, 0.2));
+  background: linear-gradient(135deg, rgba(191, 162, 135, 0.42), rgba(255, 255, 255, 0.2));
   color: white;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
@@ -217,7 +217,7 @@ textarea {
   align-items: center;
   padding: 0.7rem 1rem;
   border-radius: 999px;
-  background: rgba(31, 122, 83, 0.11);
+  background: rgba(90, 125, 90, 0.11);
   color: var(--brand-dark);
   font-weight: 700;
 }
@@ -309,14 +309,14 @@ textarea {
 .button.primary {
   color: white;
   background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-  box-shadow: 0 14px 30px rgba(20, 76, 54, 0.22);
+  box-shadow: 0 14px 30px rgba(33, 40, 53, 0.22);
 }
 
 .button.secondary,
 .button.ghost {
   color: var(--brand-dark);
   background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(20, 76, 54, 0.1);
+  border: 1px solid rgba(33, 40, 53, 0.1);
 }
 
 .button.ghost {
@@ -439,7 +439,7 @@ textarea {
   min-height: 44px;
   padding: 0.75rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(20, 76, 54, 0.1);
+  border: 1px solid rgba(33, 40, 53, 0.1);
   text-decoration: none;
   color: var(--brand-dark);
   background: rgba(255, 255, 255, 0.78);

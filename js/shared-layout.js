@@ -4,7 +4,8 @@ const sidebarTarget = document.querySelector("[data-sidebar]");
 const navigationItems = [
   { id: "dashboard", label: "Dashboard", href: "dashboard.html", icon: "D" },
   { id: "productos", label: "Productos", href: "productos.html", icon: "P" },
-  { id: "pedidos", label: "Pedidos", href: "pedidos.html", icon: "O" }
+  { id: "pedidos", label: "Pedidos", href: "pedidos.html", icon: "O" },
+  { id: "perfil", label: "Perfil", href: "perfil.html", icon: "👤" }
 ];
 
 if (sidebarTarget) {

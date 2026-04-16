@@ -6,7 +6,7 @@ body {
 
 /* Navbar styles */
 .navbar {
-    background-color: #333;
+    background-color: #212835;
     overflow: hidden;
 }
 
@@ -31,7 +31,7 @@ body {
 }
 
 .navbar ul li a:hover {
-    background-color: #575757;
+    background-color: #747274;
 }
 
 /* Centered title styles */
@@ -95,7 +95,7 @@ body {
 }
 
 .details .price {
-    color: #888;
+    color: #747274;
 }
 
 .buy-button {

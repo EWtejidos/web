@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EW | Perfil</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/tablero.css">
+</head>
+<body data-page="perfil">
+  <div class="page-shell">
+    <aside class="sidebar" data-sidebar></aside>
+
+    <main class="content-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Etherial Whisper</p>
+          <h1>Perfil</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="welcome-chip">Gestiona tus datos de contacto</span>
+          <a class="button ghost" href="/logout">Cerrar sesion</a>
+        </div>
+      </header>
+
+      <section class="panel module-panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Perfil del tejedor</p>
+            <h3>Dirección, teléfono, correo y redes</h3>
+          </div>
+          <span class="section-badge">Tus datos se guardan en el backend</span>
+        </div>
+
+        <form class="profile-form" id="profileForm">
+          <div class="form-grid">
+            <label class="field-group">
+              <span>Nombre de usuario</span>
+              <input type="text" id="username" disabled>
+            </label>
+            <label class="field-group">
+              <span>Correo electrónico</span>
+              <input type="email" id="email" placeholder="correo@ejemplo.com">
+            </label>
+            <label class="field-group">
+              <span>Teléfono</span>
+              <input type="tel" id="phone" placeholder="+57 300 000 0000">
+            </label>
+            <label class="field-group field-full">
+              <span>Dirección</span>
+              <input type="text" id="address" placeholder="Calle, barrio, ciudad">
+            </label>
+            <label class="field-group field-full">
+              <span>URL foto de perfil</span>
+              <input type="url" id="photoUrl" placeholder="https://...">
+            </label>
+            <label class="field-group field-full">
+              <span>Redes sociales / enlaces</span>
+              <textarea id="socialLinks" placeholder="Una URL por línea"></textarea>
+            </label>
+          </div>
+
+          <div class="profile-actions">
+            <button class="button primary" type="submit">Guardar cambios</button>
+            <span class="mini-copy" id="profileStatus">Cargando datos...</span>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/shared-layout.js"></script>
+  <script src="js/perfil.js"></script>
+</body>
+</html>

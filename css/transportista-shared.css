@@ -9,19 +9,19 @@
   pointer-events: none;
   background:
     radial-gradient(circle at 10% 20%, rgba(240, 223, 148, 0.22), transparent 20%),
-    radial-gradient(circle at 80% 12%, rgba(255, 246, 198, 0.22), transparent 24%),
+    radial-gradient(circle at 80% 12%, rgba(248, 239, 218, 0.22), transparent 24%),
     radial-gradient(circle at 88% 85%, rgba(222, 196, 107, 0.14), transparent 18%);
   z-index: 0;
 }
 
 .transport-sidebar {
   background:
-    linear-gradient(180deg, rgba(29, 38, 20, 0.9), rgba(53, 70, 36, 0.84)),
-    radial-gradient(circle at top, rgba(247, 227, 149, 0.08), transparent 40%);
-  border: 1px solid rgba(231, 206, 121, 0.24);
+    linear-gradient(180deg, rgba(33, 40, 53, 0.94), rgba(33, 40, 53, 0.88)),
+    radial-gradient(circle at top, rgba(248, 239, 218, 0.08), transparent 40%);
+  border: 1px solid rgba(248, 239, 218, 0.18);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 235, 160, 0.08),
-    0 24px 56px rgba(10, 18, 10, 0.32);
+    inset 0 0 0 1px rgba(248, 239, 218, 0.08),
+    0 24px 56px rgba(33, 40, 53, 0.32);
 }
 
 .transport-sidebar .brand-block {
@@ -36,7 +36,7 @@
 
 .transport-sidebar .brand-title {
   font-size: 1.2rem;
-  color: #f8efc7;
+  color: #f8efda;
 }
 
 .transport-sidebar .brand-subtitle,
@@ -46,21 +46,21 @@
 
 .transport-sidebar .sidebar-link {
   border: 1px solid transparent;
-  background: rgba(255, 244, 206, 0.04);
+  background: rgba(248, 239, 218, 0.04);
 }
 
 .transport-sidebar .sidebar-link:hover {
-  background: rgba(248, 229, 166, 0.12);
+  background: rgba(248, 239, 218, 0.12);
   border-color: rgba(238, 213, 131, 0.18);
 }
 
 .transport-sidebar .sidebar-link.active {
-  color: #fff9dd;
-  background: linear-gradient(135deg, rgba(157, 130, 48, 0.58), rgba(107, 133, 74, 0.34));
-  border-color: rgba(255, 226, 128, 0.26);
+  color: #f8efda;
+  background: linear-gradient(135deg, rgba(187, 162, 135, 0.58), rgba(191, 162, 135, 0.34));
+  border-color: rgba(248, 239, 218, 0.26);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 243, 199, 0.12),
-    0 0 20px rgba(223, 192, 95, 0.16);
+    inset 0 0 0 1px rgba(248, 239, 218, 0.12),
+    0 0 20px rgba(191, 162, 135, 0.16);
 }
 
 .transport-sidebar .sidebar-icon {
@@ -71,15 +71,15 @@
   justify-content: center;
   border-radius: 999px;
   background: rgba(255, 242, 193, 0.14);
-  color: #f7edc4;
+  color: #f8efda;
   font-size: 0.85rem;
   font-weight: 800;
 }
 
 .transport-sidebar .sidebar-footer {
-  background: rgba(255, 245, 214, 0.06);
+  background: rgba(248, 239, 218, 0.06);
   border: 1px solid rgba(236, 215, 145, 0.16);
-  color: #fff8dc;
+  color: #f8efda;
 }
 
 .transport-content,
@@ -92,9 +92,9 @@
 .transport-topbar,
 .transport-card {
   border-radius: 30px;
-  border: 1px solid rgba(224, 203, 125, 0.3);
+  border: 1px solid rgba(187, 162, 135, 0.3);
   background:
-    linear-gradient(180deg, rgba(255, 251, 231, 0.68), rgba(238, 231, 195, 0.42)),
+    linear-gradient(180deg, rgba(248, 239, 218, 0.68), rgba(242, 214, 189, 0.42)),
     rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(14px);
   box-shadow:
@@ -120,15 +120,15 @@
 .transport-subtitle {
   margin: 0.45rem 0 0;
   max-width: 60ch;
-  color: #5a6140;
+  color: #747274;
   line-height: 1.6;
 }
 
 .gold-panel {
   border-radius: 24px;
   padding: 1.2rem;
-  background: linear-gradient(180deg, rgba(255, 252, 237, 0.68), rgba(214, 204, 154, 0.24));
-  border: 1px solid rgba(195, 165, 79, 0.26);
+  background: linear-gradient(180deg, rgba(248, 239, 218, 0.68), rgba(214, 204, 154, 0.24));
+  border: 1px solid rgba(187, 162, 135, 0.26);
   box-shadow: inset 0 0 0 1px rgba(255, 244, 196, 0.28);
 }
 
@@ -153,21 +153,21 @@
   gap: 0.45rem;
   border-radius: 999px;
   padding: 0.65rem 0.9rem;
-  background: rgba(255, 251, 236, 0.82);
-  border: 1px solid rgba(170, 145, 72, 0.18);
-  color: #4d4b2d;
+  background: rgba(248, 239, 218, 0.82);
+  border: 1px solid rgba(187, 162, 135, 0.18);
+  color: #747274;
   font-size: 0.9rem;
   font-weight: 700;
 }
 
 .filter-chip input {
-  accent-color: #657547;
+  accent-color: #5a7d5a;
 }
 
 .field-label {
   display: block;
   margin-bottom: 0.4rem;
-  color: #5e5a36;
+  color: #747274;
   font-weight: 700;
 }
 
@@ -176,7 +176,7 @@
   border-radius: 18px;
   border: 1px solid rgba(146, 126, 56, 0.25);
   background: rgba(255, 251, 235, 0.72);
-  color: #384028;
+  color: #212835;
   padding: 0.9rem 1rem;
   outline: none;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
@@ -193,14 +193,14 @@
 }
 
 .button.primary {
-  background: linear-gradient(135deg, #6b7d4a, #485735);
+  background: linear-gradient(135deg, #5a7d5a, #5a7d5a);
   box-shadow: 0 14px 30px rgba(75, 89, 48, 0.24);
 }
 
 .button.secondary {
-  background: linear-gradient(135deg, rgba(250, 241, 206, 0.92), rgba(219, 206, 157, 0.86));
-  color: #4f4b2c;
-  border: 1px solid rgba(170, 145, 72, 0.24);
+  background: linear-gradient(135deg, rgba(248, 239, 218, 0.92), rgba(219, 206, 157, 0.86));
+  color: #212835;
+  border: 1px solid rgba(187, 162, 135, 0.24);
 }
 
 .button.ghost {
@@ -225,12 +225,12 @@
 
 .status-pill.confirmado {
   background: rgba(68, 123, 74, 0.16);
-  color: #2f6f3c;
+  color: #5a7d5a;
 }
 
 .status-pill.pendiente {
   background: rgba(174, 127, 43, 0.18);
-  color: #8b621d;
+  color: #bba287;
 }
 
 .transport-footer {

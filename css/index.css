@@ -1,10 +1,10 @@
 :root {
-  --gold-light: #fff3c4;
-  --gold-dark: #c8a94c;
-  --green-main: #5a7f49;
-  --green-soft: #6fbf5f;
-  --green-deep: #1e3c1e;
-  --cream: #f5f2e7;
+  --gold-light: #f8efda;
+  --gold-dark: #bba287;
+  --green-main: #5a7d5a;
+  --green-soft: #bfa288;
+  --green-deep: #212835;
+  --cream: #f8efda;
   --shadow-dark: rgba(0, 0, 0, 0.45);
 }
 
@@ -40,7 +40,7 @@ body {
 .overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(1, 29, 10, 0.68) 5%, rgba(0, 0, 0, 0.92));
+  background: radial-gradient(circle at center, rgba(33, 40, 53, 0.68) 5%, rgba(33, 40, 53, 0.92));
 }
 
 .hero-content {
@@ -54,7 +54,7 @@ body {
 .logo {
   width: min(390px, 72vw);
   margin-bottom: 1.8rem;
-  filter: drop-shadow(0 0 47px rgba(56, 228, 93, 0.75));
+  filter: drop-shadow(0 0 42px rgba(187, 162, 135, 0.55));
   transition: transform 0.6s ease, filter 0.4s ease;
 }
 
@@ -65,7 +65,7 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 45px rgba(255, 215, 120, 0.6);
+  text-shadow: 0 0 35px rgba(248, 239, 218, 0.45);
   margin-bottom: 1.5rem;
   transition: transform 0.6s ease;
 }
@@ -329,7 +329,7 @@ h1 {
   padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(45deg, #4c7a3c, #6fbf5f);
+  background: linear-gradient(45deg, #5a7d5a, #bfa288);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -457,7 +457,7 @@ h1 {
 
 .cart-buy {
   padding: 0.95rem 1.8rem;
-  background: linear-gradient(45deg, #4c7a3c, #6fbf5f);
+  background: linear-gradient(45deg, #5a7d5a, #bfa288);
   color: white;
 }
 

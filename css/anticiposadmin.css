@@ -134,7 +134,7 @@
   display: grid;
   place-items: center;
   padding: 1.5rem;
-  background: rgba(8, 16, 13, 0.78);
+  background: rgba(33, 40, 53, 0.78);
   backdrop-filter: blur(4px);
 }
 
@@ -156,7 +156,7 @@
 
 .reject-modal-card h4 {
   margin: 0 0 0.8rem;
-  color: #f2dd83;
+  color: #f8efda;
 }
 
 .reject-modal-card p {

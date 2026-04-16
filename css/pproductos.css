@@ -27,7 +27,7 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 18px;
-  background: rgba(112, 168, 139, 0.25);
+  background: rgba(191, 162, 135, 0.25);
 }
 
 .product-copy {
@@ -68,7 +68,7 @@
   display: grid;
   place-items: center;
   padding: 1.5rem;
-  background: rgba(6, 15, 11, 0.76);
+  background: rgba(33, 40, 53, 0.76);
   backdrop-filter: blur(4px);
 }
 
@@ -78,7 +78,7 @@
   border-radius: 24px;
   padding: 1.4rem;
   background: rgba(255, 255, 255, 0.97);
-  border: 1px solid rgba(20, 76, 54, 0.16);
+  border: 1px solid rgba(33, 40, 53, 0.16);
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.24);
 }
 
@@ -104,7 +104,7 @@
   width: 100%;
   padding: 0.9rem 1rem;
   border-radius: 16px;
-  border: 1px solid rgba(20, 76, 54, 0.16);
+  border: 1px solid rgba(33, 40, 53, 0.16);
   font: inherit;
   background: white;
 }
@@ -143,14 +143,14 @@
   background: linear-gradient(135deg, var(--brand), var(--brand-dark));
   color: white;
   font-size: 1.8rem;
-  box-shadow: 0 22px 40px rgba(20, 76, 54, 0.35);
+  box-shadow: 0 22px 40px rgba(33, 40, 53, 0.35);
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .floating-action:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 28px 46px rgba(20, 76, 54, 0.42);
+  box-shadow: 0 28px 46px rgba(33, 40, 53, 0.42);
 }
 
 @media (max-width: 768px) {
