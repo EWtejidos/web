@@ -21,24 +21,32 @@
   <main class="checkout-main">
     <section class="checkout-card">
       <div class="checkout-stepper">
-        <strong id="stepCounter">Paso 1 de 5</strong>
-        <small id="stepHelp">Completa los datos para crear tu orden.</small>
+        <strong>Información del pedido</strong>
+        <small>Completa todos los datos para crear tu orden.</small>
       </div>
 
       <div class="checkout-content">
-        <h1 id="stepTitle">Nombre completo</h1>
-        <p id="stepQuestion">¿Cuál es tu nombre completo?</p>
         <div class="checkout-input-group">
-          <label id="stepLabel" for="checkoutInput">Tu respuesta</label>
-          <input id="checkoutInput" type="text" autocomplete="name" />
-          <textarea id="checkoutTextarea" rows="4" hidden></textarea>
-          <div class="checkout-error" id="checkoutError" aria-live="polite"></div>
+          <label for="fullName">Nombre completo</label>
+          <input id="fullName" type="text" autocomplete="name" placeholder="Ej. Andrea Martínez" />
         </div>
+        <div class="checkout-input-group">
+          <label for="email">Correo electrónico</label>
+          <input id="email" type="email" autocomplete="email" placeholder="ejemplo@correo.com" />
+        </div>
+        <div class="checkout-input-group">
+          <label for="phone">Teléfono</label>
+          <input id="phone" type="tel" autocomplete="tel" placeholder="+57 300 123 4567" />
+        </div>
+        <div class="checkout-input-group">
+          <label for="delivery">Dirección de entrega</label>
+          <textarea id="delivery" rows="4" placeholder="Calle 123 #45-67, Barranquilla"></textarea>
+        </div>
+        <div class="checkout-error" id="checkoutError" aria-live="polite"></div>
       </div>
 
       <div class="checkout-actions">
-        <button id="backButton" type="button" class="secondary">Atrás</button>
-        <button id="nextButton" type="button" class="primary">Siguiente</button>
+        <button id="payButton" type="button" class="primary">Pagar ahora</button>
       </div>
     </section>
 

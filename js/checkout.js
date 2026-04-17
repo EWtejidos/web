@@ -1,5 +1,4 @@
 const checkoutState = {
-  step: 0,
   customer: {
     full_name: "",
     email: "",
@@ -10,58 +9,12 @@ const checkoutState = {
   total: window.EWCart.getTotal()
 };
 
-const steps = [
-  {
-    title: "Nombre completo",
-    question: "¿Cuál es tu nombre completo?",
-    label: "Nombre completo",
-    type: "text",
-    field: "full_name",
-    placeholder: "Ej. Andrea Martínez"
-  },
-  {
-    title: "Correo electrónico",
-    question: "Ingresa un correo válido para recibir información del pedido.",
-    label: "Correo electrónico",
-    type: "email",
-    field: "email",
-    placeholder: "ejemplo@correo.com"
-  },
-  {
-    title: "Teléfono de contacto",
-    question: "¿Cuál es tu número de teléfono?",
-    label: "Teléfono",
-    type: "tel",
-    field: "phone",
-    placeholder: "+57 300 123 4567"
-  },
-  {
-    title: "Dirección de entrega",
-    question: "Indica la dirección completa donde deseas recibir el pedido.",
-    label: "Dirección",
-    type: "textarea",
-    field: "delivery",
-    placeholder: "Calle 123 #45-67, Barranquilla"
-  },
-  {
-    title: "Revisión final",
-    question: "Revisa tus datos y confirma el pago.",
-    label: "Orden lista",
-    type: "review",
-    field: null,
-    placeholder: ""
-  }
-];
-
-const stepCounter = document.getElementById("stepCounter");
-const stepTitle = document.getElementById("stepTitle");
-const stepQuestion = document.getElementById("stepQuestion");
-const stepLabel = document.getElementById("stepLabel");
-const checkoutInput = document.getElementById("checkoutInput");
-const checkoutTextarea = document.getElementById("checkoutTextarea");
+const fullNameInput = document.getElementById("fullName");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
+const deliveryTextarea = document.getElementById("delivery");
 const checkoutError = document.getElementById("checkoutError");
-const backButton = document.getElementById("backButton");
-const nextButton = document.getElementById("nextButton");
+const payButton = document.getElementById("payButton");
 const summaryItems = document.getElementById("summaryItems");
 const summaryTotal = document.getElementById("summaryTotal");
 const checkoutStatus = document.getElementById("checkoutStatus");
@@ -79,12 +32,11 @@ function renderSummary() {
 
   if (!cart.length) {
     summaryItems.innerHTML = '<p class="summary-empty">El carrito está vacío. Regresa a la tienda para agregar productos.</p>';
-    nextButton.disabled = true;
-    backButton.disabled = false;
+    payButton.disabled = true;
     return;
   }
 
-  nextButton.disabled = false;
+  payButton.disabled = false;
   summaryItems.innerHTML = cart
     .map((item) => `
       <div class="summary-item">
@@ -97,89 +49,58 @@ function renderSummary() {
   summaryTotal.textContent = formatCurrency(checkoutState.total);
 }
 
-function renderStep() {
-  const step = steps[checkoutState.step];
-  stepCounter.textContent = `Paso ${checkoutState.step + 1} de ${steps.length}`;
-  stepTitle.textContent = step.title;
-  stepQuestion.textContent = step.question;
-  stepLabel.textContent = step.label;
-  checkoutError.textContent = "";
-
-  if (step.type === "textarea") {
-    checkoutInput.hidden = true;
-    checkoutTextarea.hidden = false;
-    checkoutTextarea.readOnly = false;
-    checkoutTextarea.value = checkoutState.delivery;
-    checkoutTextarea.placeholder = step.placeholder;
-  } else if (step.type === "review") {
-    checkoutInput.hidden = true;
-    checkoutTextarea.hidden = false;
-    checkoutTextarea.readOnly = true;
-    checkoutTextarea.value = `Nombre: ${checkoutState.customer.full_name}\nCorreo: ${checkoutState.customer.email}\nTeléfono: ${checkoutState.customer.phone}\nDirección: ${checkoutState.delivery}\n\nTotal: ${formatCurrency(checkoutState.total)}`;
-    nextButton.textContent = "Pagar ahora";
-  } else {
-    checkoutInput.hidden = false;
-    checkoutTextarea.hidden = true;
-    checkoutInput.type = step.type;
-    checkoutInput.value = checkoutState.customer[step.field] || "";
-    checkoutInput.placeholder = step.placeholder;
-    nextButton.textContent = "Siguiente";
-  }
-
-  backButton.style.visibility = checkoutState.step === 0 ? "hidden" : "visible";
+function updateState() {
+  checkoutState.customer.full_name = fullNameInput.value.trim();
+  checkoutState.customer.email = emailInput.value.trim();
+  checkoutState.customer.phone = phoneInput.value.trim();
+  checkoutState.delivery = deliveryTextarea.value.trim();
 }
 
-function getCurrentFieldValue() {
-  const step = steps[checkoutState.step];
-  if (step.type === "textarea") {
-    return checkoutTextarea.value.trim();
-  }
-  return checkoutInput.value.trim();
-}
+function validateForm() {
+  const fullName = fullNameInput.value.trim();
+  const email = emailInput.value.trim();
+  const phone = phoneInput.value.trim();
+  const delivery = deliveryTextarea.value.trim();
 
-function validateStep() {
-  const step = steps[checkoutState.step];
-  const value = getCurrentFieldValue();
-
-  if (step.type === "review") {
-    return true;
-  }
-
-  if (!value) {
-    checkoutError.textContent = "Este campo es obligatorio.";
+  if (!fullName) {
+    checkoutError.textContent = "El nombre completo es obligatorio.";
+    fullNameInput.focus();
     return false;
   }
 
-  if (step.type === "email") {
-    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-    if (!emailRegex.test(value)) {
-      checkoutError.textContent = "Ingresa un correo electrónico válido.";
-      return false;
-    }
+  if (!email) {
+    checkoutError.textContent = "El correo electrónico es obligatorio.";
+    emailInput.focus();
+    return false;
   }
 
-  if (step.type === "tel") {
-    if (value.length < 7) {
-      checkoutError.textContent = "Ingresa un teléfono válido.";
-      return false;
-    }
+  const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  if (!emailRegex.test(email)) {
+    checkoutError.textContent = "Ingresa un correo electrónico válido.";
+    emailInput.focus();
+    return false;
   }
 
+  if (!phone) {
+    checkoutError.textContent = "El teléfono es obligatorio.";
+    phoneInput.focus();
+    return false;
+  }
+
+  if (phone.length < 7) {
+    checkoutError.textContent = "Ingresa un teléfono válido.";
+    phoneInput.focus();
+    return false;
+  }
+
+  if (!delivery) {
+    checkoutError.textContent = "La dirección de entrega es obligatoria.";
+    deliveryTextarea.focus();
+    return false;
+  }
+
+  checkoutError.textContent = "";
   return true;
-}
-
-function saveStepValue() {
-  const step = steps[checkoutState.step];
-  const value = getCurrentFieldValue();
-
-  if (step.field === "delivery") {
-    checkoutState.delivery = value;
-    return;
-  }
-
-  if (step.field) {
-    checkoutState.customer[step.field] = value;
-  }
 }
 
 async function loadMercadoPagoSdk() {
@@ -217,6 +138,12 @@ async function openMercadoPagoCheckout(details) {
 }
 
 async function submitCheckout() {
+  updateState();
+
+  if (!validateForm()) {
+    return;
+  }
+
   if (!checkoutState.items.length) {
     checkoutError.textContent = "El carrito está vacío. No es posible continuar.";
     return;
@@ -230,8 +157,7 @@ async function submitCheckout() {
   };
 
   try {
-    nextButton.disabled = true;
-    backButton.disabled = true;
+    payButton.disabled = true;
     checkoutStatus.hidden = false;
     checkoutStatusMessage.textContent = "Creando el pago seguro...";
 
@@ -261,33 +187,10 @@ async function submitCheckout() {
   } catch (error) {
     checkoutError.textContent = `Error: ${error.message || error}`;
     checkoutStatus.hidden = true;
-    nextButton.disabled = false;
-    backButton.disabled = false;
+    payButton.disabled = false;
   }
 }
 
-backButton.addEventListener("click", () => {
-  if (checkoutState.step > 0) {
-    checkoutState.step -= 1;
-    renderStep();
-  }
-});
-
-nextButton.addEventListener("click", async () => {
-  if (!validateStep()) {
-    return;
-  }
-
-  saveStepValue();
-
-  if (checkoutState.step === steps.length - 1) {
-    await submitCheckout();
-    return;
-  }
-
-  checkoutState.step += 1;
-  renderStep();
-});
+payButton.addEventListener("click", submitCheckout);
 
 renderSummary();
-renderStep();
