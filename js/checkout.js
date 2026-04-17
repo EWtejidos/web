@@ -182,6 +182,40 @@ function saveStepValue() {
   }
 }
 
+async function loadMercadoPagoSdk() {
+  if (window.MercadoPago) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.src = "https://sdk.mercadopago.com/js/v2";
+  script.async = true;
+
+  return new Promise((resolve, reject) => {
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
+async function openMercadoPagoCheckout(details) {
+  await loadMercadoPagoSdk();
+
+  if (!window.MercadoPago) {
+    throw new Error("No se pudo cargar el SDK de Mercado Pago.");
+  }
+
+  const mp = new MercadoPago(details.public_key, {
+    locale: "es-CO"
+  });
+
+  mp.checkout({
+    preference: {
+      id: details.preference_id
+    }
+  });
+}
+
 async function submitCheckout() {
   if (!checkoutState.items.length) {
     checkoutError.textContent = "El carrito está vacío. No es posible continuar.";
@@ -217,7 +251,11 @@ async function submitCheckout() {
 
     checkoutStatusMessage.textContent = "Redireccionando al checkout de Mercado Pago...";
     window.EWCart.clearCart();
-    window.location.href = `https://www.mercadopago.com/checkout/v1/redirect?pref_id=${encodeURIComponent(data.preference_id)}`;
+    if (data.public_key) {
+      await openMercadoPagoCheckout(data);
+    } else {
+      window.location.href = `https://www.mercadopago.com/checkout/v1/redirect?pref_id=${encodeURIComponent(data.preference_id)}`;
+    }
   } catch (error) {
     checkoutError.textContent = `Error: ${error.message || error}`;
     checkoutStatus.hidden = true;
