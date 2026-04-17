@@ -251,7 +251,9 @@ async function submitCheckout() {
 
     checkoutStatusMessage.textContent = "Redireccionando al checkout de Mercado Pago...";
     window.EWCart.clearCart();
-    if (data.public_key) {
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else if (data.public_key) {
       await openMercadoPagoCheckout(data);
     } else {
       window.location.href = `https://www.mercadopago.com/checkout/v1/redirect?pref_id=${encodeURIComponent(data.preference_id)}`;
