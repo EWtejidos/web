@@ -365,58 +365,14 @@ async function openMercadoPagoCheckout(details) {
   });
 }
 
-buyButton.addEventListener("click", async () => {
+buyButton.addEventListener("click", () => {
   const cart = window.EWCart.getCart();
   if (!cart.length) {
     alert("Agrega productos antes de comprar.");
     return;
   }
 
-  const fullName = prompt("Nombre completo del cliente:", "");
-  if (!fullName) {
-    alert("El nombre es obligatorio para continuar con la compra.");
-    return;
-  }
-
-  const delivery = prompt("Direccion de entrega (obligatoria):", "");
-  if (!delivery) {
-    alert("La direccion de entrega es obligatoria.");
-    return;
-  }
-
-  const email = prompt("Correo electronico del cliente (opcional):", "");
-  const phone = prompt("Telefono de contacto (opcional):", "");
-
-  try {
-    const response = await fetch("/api/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        customer: {
-          full_name: fullName,
-          email,
-          phone
-        },
-        delivery,
-        total: window.EWCart.getTotal(),
-        items: cart
-      })
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.error || "No se pudo iniciar el pago.");
-    }
-
-    await openMercadoPagoCheckout(data);
-    window.EWCart.clearCart();
-  } catch (error) {
-    console.error(error);
-    alert(`Error iniciando el pago: ${error.message || error}`);
-  }
+  window.location.href = "/checkout";
 });
 
 viewCartButton.addEventListener("click", () => {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; min-height: 100vh; font-family: 'Playfair Display', serif; background: #f7f2eb; display: flex; align-items: center; justify-content: center; }
+    .result-card { width: min(640px, 100%); padding: 2.5rem; background: #fff; border-radius: 28px; box-shadow: 0 28px 60px rgba(60, 47, 47, 0.12); text-align: center; }
+    .result-card h1 { margin: 0 0 1rem; font-size: 2.1rem; color: #422f22; }
+    .result-card p { margin: 0 0 1.5rem; color: #5b4d43; line-height: 1.7; }
+    .result-card a { display: inline-flex; align-items: center; justify-content: center; padding: 0.95rem 1.7rem; border-radius: 999px; background: #7b5537; color: #fff; text-decoration: none; font-weight: 600; }
+    .result-icon { width: 72px; height: 72px; margin: 0 auto 1.3rem; display: grid; place-items: center; border-radius: 50%; }
+    .success { background: #dbeaeb; color: #186658; }
+    .failure { background: #f4dbdb; color: #8c2e2e; }
+    .pending { background: #f6efd8; color: #7b5f2f; }
+  </style>
+</head>
+<body>
+  <article class="result-card">
+    <div class="result-icon {{ result }}">
+      {% if result == 'success' %}
+      ✓
+      {% elif result == 'failure' %}
+      ✕
+      {% else %}
+      …
+      {% endif %}
+    </div>
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <a href="/">Volver a la tienda</a>
+  </article>
+</body>
+</html>

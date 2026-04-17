@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Ethereal Whispers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+  <header class="checkout-header">
+    <div class="checkout-brand">
+      <a href="/" class="brand-link">Ethereal Whispers</a>
+      <span class="brand-tag">Checkout seguro</span>
+    </div>
+    <a class="back-link" href="/">← Volver a la tienda</a>
+  </header>
+
+  <main class="checkout-main">
+    <section class="checkout-card">
+      <div class="checkout-stepper">
+        <strong id="stepCounter">Paso 1 de 5</strong>
+        <small id="stepHelp">Completa los datos para crear tu orden.</small>
+      </div>
+
+      <div class="checkout-content">
+        <h1 id="stepTitle">Nombre completo</h1>
+        <p id="stepQuestion">¿Cuál es tu nombre completo?</p>
+        <div class="checkout-input-group">
+          <label id="stepLabel" for="checkoutInput">Tu respuesta</label>
+          <input id="checkoutInput" type="text" autocomplete="name" />
+          <textarea id="checkoutTextarea" rows="4" hidden></textarea>
+          <div class="checkout-error" id="checkoutError" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="checkout-actions">
+        <button id="backButton" type="button" class="secondary">Atrás</button>
+        <button id="nextButton" type="button" class="primary">Siguiente</button>
+      </div>
+    </section>
+
+    <aside class="checkout-summary">
+      <div class="summary-box">
+        <h2>Resumen del pedido</h2>
+        <div id="summaryItems" class="summary-items"></div>
+        <div class="summary-total">
+          <span>Total estimado</span>
+          <strong id="summaryTotal">$0</strong>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="checkoutStatus" class="checkout-status" hidden>
+    <p id="checkoutStatusMessage">Redireccionando al pago...</p>
+  </div>
+
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
