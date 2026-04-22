@@ -7,7 +7,8 @@ const adminNavigationItems = [
   { id: "ordenes", label: "Gestion de ordenes", href: "ordenesadmin.html", icon: "O" },
   { id: "transporte", label: "Gestion de transporte", href: "transporteadmin.html", icon: "T" },
   { id: "contabilidad", label: "Contabilidad", href: "contabilidadadmin.html", icon: "C" },
-  { id: "bases", label: "Bases de datos", href: "basesadmin.html", icon: "B" }
+  { id: "bases", label: "Bases de datos", href: "basesadmin.html", icon: "B" },
+  { id: "usuarios", label: "Crear usuarios", href: "usuariosadmin.html", icon: "👤" }
 ];
 
 if (adminSidebarTarget) {

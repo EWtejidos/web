@@ -1,0 +1,391 @@
+/* ========================================
+   PERFIL USUARIO - ESTILOS MEJORADOS
+   ======================================== */
+
+:root {
+  --form-bg: rgba(255, 255, 255, 0.6);
+  --form-border: rgba(0, 0, 0, 0.1);
+  --form-focus: rgba(0, 0, 0, 0.15);
+  --success-color: #4ade80;
+  --error-color: #ef4444;
+}
+
+/* ========== USUARIO PROFILE CHIP EN TOPBAR ========== */
+.user-profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.user-photo-thumbnail {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+/* ========== PANEL PRINCIPAL ========== */
+.profile-panel {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+/* ========== ENCABEZADO DEL PERFIL ========== */
+.profile-header {
+  display: flex;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.profile-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-photo-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-upload-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.profile-photo-container:hover .photo-upload-label {
+  opacity: 1;
+}
+
+.upload-icon {
+  font-size: 1.75rem;
+}
+
+.upload-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.photo-upload-input {
+  display: none;
+}
+
+.photo-info {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.profile-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.profile-intro h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-strong);
+}
+
+.profile-role {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.profile-status {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0.5rem 0 0 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(200, 200, 200, 0.2);
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.profile-status.success {
+  color: var(--success-color);
+  background: rgba(74, 222, 128, 0.15);
+}
+
+.profile-status.error {
+  color: var(--error-color);
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* ========== FORMULARIO ========== */
+.profile-form {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.form-section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-section h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: -1rem 0 0 0;
+  font-style: italic;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.field-label {
+  font-weight: 600;
+  color: var(--text-strong);
+  font-size: 0.95rem;
+}
+
+.field-required {
+  color: var(--error-color);
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field textarea {
+  padding: 0.875rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--form-border);
+  background: var(--form-bg);
+  color: var(--text-strong);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--form-focus);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.field-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ========== ACCIONES DEL FORMULARIO ========== */
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.form-actions .button.primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.form-actions .button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.form-actions .button.primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.form-actions .button.secondary {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-strong);
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.form-actions .button.secondary:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.save-message {
+  margin-left: auto;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  min-height: 1.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.save-message.success {
+  color: var(--success-color);
+}
+
+.save-message.error {
+  color: var(--error-color);
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 768px) {
+  .profile-panel {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .profile-intro {
+    justify-content: flex-start;
+  }
+
+  .profile-intro h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions .button {
+    width: 100%;
+  }
+
+  .save-message {
+    margin-left: 0;
+    order: -1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-photo-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-intro h2 {
+    font-size: 1.25rem;
+  }
+
+  .form-section h3 {
+    font-size: 1rem;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    padding: 0.75rem 0.875rem;
+  }
+}

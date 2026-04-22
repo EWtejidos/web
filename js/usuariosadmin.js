@@ -1,110 +1,189 @@
-// Selecciona el formulario de usuarios desde el DOM (HTML)
-// Este formulario es donde se crean nuevos usuarios
+// ========== SELECTORES DEL DOM ==========
 const userForm = document.querySelector('#userForm');
-
-// Selecciona el cuerpo de la tabla donde se van a renderizar los usuarios
 const usersTableBody = document.querySelector('#usersTableBody');
-
-// Elemento donde se muestran mensajes de estado (éxito o error)
 const userStatus = document.querySelector('#userStatus');
+const usersCount = document.querySelector('#usersCount');
+const newUsernameInput = document.querySelector('#newUsername');
+const newPasswordInput = document.querySelector('#newPassword');
+const newRoleInput = document.querySelector('#newRole');
 
+// ========== MAPEO DE ROLES A ICONOS ==========
+const roleIcons = {
+  tejedor: '🧵',
+  transportista: '🚚',
+  admin: '👨‍💼'
+};
 
-// Función asíncrona para obtener la lista de usuarios desde el backend
+const roleLabels = {
+  tejedor: 'Tejedor',
+  transportista: 'Transportista',
+  admin: 'Administrador'
+};
+
+// ========== CARGAR USUARIOS ==========
 async function fetchUsers() {
   try {
-    // Hace una petición GET al endpoint del backend (Flask según tu diagrama)
     const response = await fetch('/api/admin/users');
 
-    // Si la respuesta no es correcta (status != 200-299), lanza un error
     if (!response.ok) {
       throw new Error('No se pudo cargar la lista de usuarios.');
     }
 
-    // Convierte la respuesta a JSON (array de usuarios)
     const users = await response.json();
+    
+    if (!Array.isArray(users) || users.length === 0) {
+      usersTableBody.innerHTML = `
+        <tr class="empty-state">
+          <td colspan="3" class="empty-message">📭 No hay usuarios registrados aún</td>
+        </tr>
+      `;
+      usersCount.textContent = 'Sin usuarios';
+      return;
+    }
 
-    // Inserta dinámicamente los usuarios en la tabla HTML
-    // Usa map para recorrer cada usuario y generar filas <tr>
+    // Actualizar contador
+    usersCount.textContent = `${users.length} ${users.length === 1 ? 'usuario' : 'usuarios'} registrados`;
+
+    // Renderizar tabla
     usersTableBody.innerHTML = users.map((user) => `
-      <tr>
-        <td>${user.username}</td>  <!-- Muestra el nombre de usuario -->
-        <td>${user.role}</td>      <!-- Muestra el rol del usuario -->
+      <tr class="user-row" data-user-id="${user.id}">
+        <td class="col-username">
+          <strong>${escapeHtml(user.username)}</strong>
+        </td>
+        <td class="col-role">
+          <span class="role-badge ${user.role}">
+            <span class="role-icon">${roleIcons[user.role] || '👤'}</span>
+            <span class="role-text">${roleLabels[user.role] || user.role}</span>
+          </span>
+        </td>
+        <td class="col-actions">
+          <button type="button" class="action-button delete-user" title="Eliminar usuario" data-username="${escapeHtml(user.username)}">
+            🗑️
+          </button>
+        </td>
       </tr>
-    `).join(''); // Une todo en un solo string
+    `).join('');
+
+    // Agregar event listeners a los botones de eliminar
+    document.querySelectorAll('.delete-user').forEach(btn => {
+      btn.addEventListener('click', handleDeleteUser);
+    });
+
   } catch (error) {
-    // Si ocurre cualquier error (red, servidor, etc.)
-
-    // Muestra una fila indicando error en la tabla
-    usersTableBody.innerHTML = '<tr><td colspan="2">Error cargando usuarios.</td></tr>';
-
-    // Muestra el mensaje de error en el estado
-    userStatus.textContent = error.message;
-
-    // Aplica clase visual de error (probablemente CSS)
-    userStatus.classList.add('is-error');
+    console.error('Error cargando usuarios:', error);
+    usersTableBody.innerHTML = `
+      <tr class="error-state">
+        <td colspan="3" class="error-message">❌ Error cargando usuarios</td>
+      </tr>
+    `;
+    usersCount.textContent = 'Error cargando usuarios';
+    showStatus(`Error: ${error.message}`, 'error');
   }
 }
 
-
-// Función para crear un nuevo usuario (cuando se envía el formulario)
+// ========== CREAR USUARIO ==========
 async function createUser(event) {
-
-  // Previene el comportamiento por defecto del formulario (recargar página)
   event.preventDefault();
 
-  // Limpia cualquier mensaje anterior
-  userStatus.textContent = '';
+  // Validaciones básicas
+  const username = newUsernameInput.value.trim();
+  const password = newPasswordInput.value.trim();
+  const role = newRoleInput.value;
 
-  // Elimina clases de estado anteriores (error o éxito)
-  userStatus.classList.remove('is-error', 'is-success');
-
-  // Obtiene los datos del formulario (input fields)
-  const formData = new FormData(userForm);
-
-  // Convierte los datos en formato URL (clave=valor)
-  // Esto es lo que espera típicamente Flask si no usas JSON
-  const payload = new URLSearchParams(formData);
-
-  // Envía los datos al backend con método POST
-  const response = await fetch('/api/admin/users', {
-    method: 'POST',
-    body: payload,
-  });
-
-  // Convierte la respuesta del servidor a JSON
-  const result = await response.json();
-
-  // Si el servidor responde con error
-  if (!response.ok) {
-    // Muestra el error devuelto por backend o uno genérico
-    userStatus.textContent = result.error || 'Error creando el usuario.';
-
-    // Aplica estilo visual de error
-    userStatus.classList.add('is-error');
-
-    return; // Detiene la ejecución
+  if (!username || !password || !role) {
+    showStatus('Por favor completa todos los campos', 'error');
+    return;
   }
 
-  // Si todo sale bien, muestra mensaje de éxito
-  userStatus.textContent = `Usuario ${result.username} creado con rol ${result.role}.`;
+  if (password.length < 6) {
+    showStatus('La contraseña debe tener al menos 6 caracteres', 'error');
+    return;
+  }
 
-  // Aplica estilo visual de éxito
-  userStatus.classList.add('is-success');
+  try {
+    const formData = new FormData(userForm);
+    const payload = new URLSearchParams(formData);
 
-  // Limpia el formulario
-  userForm.reset();
+    const response = await fetch('/api/admin/users', {
+      method: 'POST',
+      body: payload,
+    });
 
-  // Vuelve a cargar la lista de usuarios para reflejar el nuevo usuario creado
-  fetchUsers();
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Error creando el usuario');
+    }
+
+    showStatus(`✓ Usuario ${result.username} creado como ${roleLabels[result.role]}`, 'success');
+    userForm.reset();
+    
+    // Recargar usuarios después de 1 segundo
+    setTimeout(fetchUsers, 1000);
+
+  } catch (error) {
+    console.error('Error creando usuario:', error);
+    showStatus(`✗ ${error.message}`, 'error');
+  }
 }
 
+// ========== ELIMINAR USUARIO ==========
+async function handleDeleteUser(event) {
+  const username = event.target.dataset.username;
+  
+  if (!confirm(`¿Estás seguro de que quieres eliminar al usuario "${username}"?`)) {
+    return;
+  }
 
-// Verifica que el formulario exista en la página antes de usarlo
+  try {
+    const response = await fetch(`/api/admin/users/${username}`, {
+      method: 'DELETE'
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Error eliminando usuario');
+    }
+
+    showStatus(`✓ Usuario ${username} eliminado correctamente`, 'success');
+    fetchUsers();
+
+  } catch (error) {
+    console.error('Error eliminando usuario:', error);
+    showStatus(`✗ Error eliminando usuario: ${error.message}`, 'error');
+  }
+}
+
+// ========== MOSTRAR ESTADO ==========
+function showStatus(message, type) {
+  userStatus.textContent = message;
+  userStatus.classList.remove('active', 'success', 'error');
+  userStatus.classList.add('active', type);
+
+  // Auto-limpiar después de 4 segundos si es éxito
+  if (type === 'success') {
+    setTimeout(() => {
+      userStatus.classList.remove('active', 'success');
+      userStatus.textContent = '';
+    }, 4000);
+  }
+}
+
+// ========== UTILIDAD: ESCAPE HTML ==========
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+// ========== INICIALIZACIÓN ==========
 if (userForm) {
-
-  // Escucha el evento submit (cuando el usuario envía el formulario)
   userForm.addEventListener('submit', createUser);
-
-  // Carga la lista de usuarios automáticamente al iniciar
   fetchUsers();
 }

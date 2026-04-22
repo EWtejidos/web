@@ -4,7 +4,8 @@ const transportSidebarTarget = document.querySelector("[data-transport-sidebar]"
 const transportNavigationItems = [
   { id: "plan-envios", label: "Plan envios", href: "tablerotransportista.html", icon: "E" },
   { id: "ruta-optima", label: "Ruta optima", href: "rutaoptima.html", icon: "R" },
-  { id: "confirmacion", label: "Confirmacion", href: "confirmaciontransporte.html", icon: "C" }
+  { id: "confirmacion", label: "Confirmacion", href: "confirmaciontransporte.html", icon: "C" },
+  { id: "perfil", label: "Perfil", href: "perfil.html", icon: "👤" }
 ];
 
 if (transportSidebarTarget) {

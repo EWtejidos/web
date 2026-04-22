@@ -6,6 +6,7 @@
   <title>EW | Perfil</title>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/tablero.css">
+  <link rel="stylesheet" href="css/perfil.css">
 </head>
 <body data-page="perfil">
   <div class="page-shell">
@@ -15,54 +16,91 @@
       <header class="topbar">
         <div>
           <p class="eyebrow">Etherial Whisper</p>
-          <h1>Perfil</h1>
+          <h1>Mi Perfil</h1>
         </div>
         <div class="topbar-actions">
-          <span class="welcome-chip">Gestiona tus datos de contacto</span>
-          <a class="button ghost" href="/logout">Cerrar sesion</a>
+          <div class="user-profile-chip">
+            <img id="topbarUserPhoto" class="user-photo-thumbnail" src="images/Branding/logo.png" alt="Foto perfil">
+            <span class="welcome-chip" id="topbarUsername">Mi cuenta</span>
+          </div>
+          <a class="button ghost" href="/logout">Cerrar sesión</a>
         </div>
       </header>
 
-      <section class="panel module-panel">
-        <div class="panel-header">
-          <div>
-            <p class="panel-kicker">Perfil del tejedor</p>
-            <h3>Dirección, teléfono, correo y redes</h3>
+      <section class="profile-panel">
+        <div class="profile-header">
+          <div class="profile-photo-section">
+            <div class="profile-photo-container">
+              <img id="profilePhotoPreview" class="profile-photo" src="images/Branding/logo.png" alt="Foto de perfil">
+              <label for="photoUpload" class="photo-upload-label">
+                <span class="upload-icon">📷</span>
+                <span class="upload-text">Cambiar foto</span>
+              </label>
+              <input type="file" id="photoUpload" class="photo-upload-input" accept="image/*">
+            </div>
+            <p class="photo-info">JPG, PNG o WEBP. Máx 5MB</p>
           </div>
-          <span class="section-badge">Tus datos se guardan en el backend</span>
+
+          <div class="profile-intro">
+            <h2 id="displayUsername">Usuario</h2>
+            <p class="profile-role" id="displayRole">Rol: usuario</p>
+            <p class="profile-status" id="profileStatus">Cargando datos...</p>
+          </div>
         </div>
 
         <form class="profile-form" id="profileForm">
-          <div class="form-grid">
-            <label class="field-group">
-              <span>Nombre de usuario</span>
-              <input type="text" id="username" disabled>
-            </label>
-            <label class="field-group">
-              <span>Correo electrónico</span>
-              <input type="email" id="email" placeholder="correo@ejemplo.com">
-            </label>
-            <label class="field-group">
-              <span>Teléfono</span>
-              <input type="tel" id="phone" placeholder="+57 300 000 0000">
-            </label>
-            <label class="field-group field-full">
-              <span>Dirección</span>
-              <input type="text" id="address" placeholder="Calle, barrio, ciudad">
-            </label>
-            <label class="field-group field-full">
-              <span>URL foto de perfil</span>
-              <input type="url" id="photoUrl" placeholder="https://...">
-            </label>
-            <label class="field-group field-full">
-              <span>Redes sociales / enlaces</span>
-              <textarea id="socialLinks" placeholder="Una URL por línea"></textarea>
-            </label>
+          <div class="form-section">
+            <h3>Información de contacto</h3>
+            
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="email">
+                  <span class="field-label">Correo electrónico</span>
+                  <span class="field-required">*</span>
+                </label>
+                <input type="email" id="email" placeholder="tu@correo.com" required>
+                <span class="field-hint">Usaremos este correo para contactarte</span>
+              </div>
+
+              <div class="form-field">
+                <label for="phone">
+                  <span class="field-label">Teléfono</span>
+                  <span class="field-required">*</span>
+                </label>
+                <input type="tel" id="phone" placeholder="+57 300 000 0000" required>
+                <span class="field-hint">Con código de país</span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="address">
+                <span class="field-label">Dirección</span>
+                <span class="field-required">*</span>
+              </label>
+              <input type="text" id="address" placeholder="Calle 123 #45-67, Barrio, Ciudad" required>
+              <span class="field-hint">Incluye calle, barrio y ciudad</span>
+            </div>
           </div>
 
-          <div class="profile-actions">
-            <button class="button primary" type="submit">Guardar cambios</button>
-            <span class="mini-copy" id="profileStatus">Cargando datos...</span>
+          <div class="form-section">
+            <h3>Redes sociales y enlaces</h3>
+            <p class="section-description">Comparte tus redes para que los clientes te encuentren</p>
+            
+            <div class="form-field">
+              <label for="socialLinks">
+                <span class="field-label">Redes y enlaces</span>
+              </label>
+              <textarea id="socialLinks" placeholder="https://instagram.com/tunombre&#10;https://facebook.com/tunombre&#10;https://www.tuweb.com" rows="4"></textarea>
+              <span class="field-hint">Una URL por línea (Instagram, Facebook, TikTok, tu sitio web, etc.)</span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="button primary" type="submit">
+              <span>💾 Guardar cambios</span>
+            </button>
+            <button class="button secondary" type="reset">Cancelar</button>
+            <span class="save-message" id="saveMessage"></span>
           </div>
         </form>
       </section>

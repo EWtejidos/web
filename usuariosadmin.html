@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ethereal Whisper | Gestión de Usuarios</title>
 <link rel="stylesheet" href="css/tableroadmin.css">
+<link rel="stylesheet" href="css/usuariosadmin.css">
 </head>
-<body>
+<body data-page="usuarios">
   <main class="admin-page">
     <section class="hero-panel admin-hero">
       <p class="hero-kicker">Panel administrativo</p>
@@ -15,44 +16,84 @@
     </section>
 
     <section class="admin-form-section">
-      <div class="admin-card">
-        <h2>Crear nuevo usuario</h2>
-        <form id="userForm" class="admin-form">
-          <div class="input-group">
-            <input type="text" id="newUsername" name="username" required>
-            <label for="newUsername">Usuario</label>
+      <div class="admin-card users-form-card">
+        <div class="card-header">
+          <h2>➕ Crear nuevo usuario</h2>
+          <p class="card-subtitle">Completa los datos para crear una nueva cuenta</p>
+        </div>
+
+        <form id="userForm" class="admin-form users-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newUsername">
+                <span class="label-text">Nombre de usuario</span>
+                <span class="required">*</span>
+              </label>
+              <input type="text" id="newUsername" name="username" placeholder="ejemplo_user" required>
+              <span class="input-hint">Debe ser único en el sistema</span>
+            </div>
+
+            <div class="form-group">
+              <label for="newPassword">
+                <span class="label-text">Contraseña</span>
+                <span class="required">*</span>
+              </label>
+              <input type="password" id="newPassword" name="password" placeholder="••••••••••" required>
+              <span class="input-hint">Mínimo 8 caracteres recomendado</span>
+            </div>
           </div>
-          <div class="input-group">
-            <input type="password" id="newPassword" name="password" required>
-            <label for="newPassword">Contraseña</label>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newRole">
+                <span class="label-text">Rol del usuario</span>
+                <span class="required">*</span>
+              </label>
+              <select id="newRole" name="role" required>
+                <option value="" disabled selected hidden>Selecciona un rol</option>
+                <option value="tejedor">🧵 Tejedor</option>
+                <option value="transportista">🚚 Transportista</option>
+                <option value="admin">👨‍💼 Administrador</option>
+              </select>
+              <span class="input-hint">Define los permisos del usuario</span>
+            </div>
           </div>
-          <div class="input-group">
-            <select id="newRole" name="role" required>
-              <option value="" disabled selected hidden>Selecciona rol</option>
-              <option value="tejedor">Tejedor</option>
-              <option value="transportista">Transportista</option>
-              <option value="admin">Admin</option>
-            </select>
-            <label for="newRole">Rol</label>
+
+          <div class="form-actions">
+            <button type="submit" class="button primary-btn">
+              <span>✓ Crear usuario</span>
+            </button>
+            <button type="reset" class="button secondary-btn">Limpiar</button>
           </div>
-          <button type="submit">Crear usuario</button>
+
+          <p id="userStatus" class="admin-status"></p>
         </form>
-        <p id="userStatus" class="admin-status"></p>
       </div>
     </section>
 
     <section class="admin-list-section">
-      <div class="admin-card">
-        <h2>Usuarios existentes</h2>
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>Usuario</th>
-              <th>Rol</th>
-            </tr>
-          </thead>
-          <tbody id="usersTableBody"></tbody>
-        </table>
+      <div class="admin-card users-list-card">
+        <div class="card-header">
+          <h2>📋 Usuarios existentes</h2>
+          <p class="card-subtitle" id="usersCount">Cargando usuarios...</p>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table users-table">
+            <thead>
+              <tr>
+                <th class="col-username">Usuario</th>
+                <th class="col-role">Rol</th>
+                <th class="col-actions">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr class="loading-row">
+                <td colspan="3" class="loading-message">Cargando usuarios...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </main>
